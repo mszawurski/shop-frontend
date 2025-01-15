@@ -63,6 +63,37 @@
         }
       }
     },
+    "/orders": {
+      "post": {
+        "tags": [
+          "order-controller"
+        ],
+        "operationId": "createOrder",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/OrderCreateDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/products/{productId}": {
       "get": {
         "tags": [
@@ -105,6 +136,51 @@
           },
           "description": {
             "type": "string"
+          }
+        }
+      },
+      "LineCreateDto": {
+        "type": "object",
+        "properties": {
+          "description": {
+            "type": "string"
+          },
+          "quantity": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "productId": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      },
+      "OrderCreateDto": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "CREATED",
+              "IN_DELIVERY",
+              "COMPLETED"
+            ]
+          },
+          "customerId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "lines": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/LineCreateDto"
+            }
           }
         }
       },
