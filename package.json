@@ -3,11 +3,12 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
+    "start": "npm run ng-openapi-gen && npm run ng -- serve",
+    "build": "npm run ng-openapi-gen && npm run ng -- build -prod",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serve:ssr:shop-frontend": "node dist/shop-frontend/server/server.mjs"
+    "serve:ssr:shop-frontend": "node dist/shop-frontend/server/server.mjs",
+    "ng-openapi-gen": "ng-openapi-gen"
   },
   "private": true,
   "dependencies": {
@@ -39,6 +40,7 @@
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
+    "ng-openapi-gen": "^0.52.0",
     "typescript": "~5.6.2"
   }
 }
